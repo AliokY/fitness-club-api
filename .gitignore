@@ -1,0 +1,16 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+TestResults/
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+appsettings.*.local.json
+secrets.json
+*.log
+*.db
+*.sqlite
+*.sqlite3
