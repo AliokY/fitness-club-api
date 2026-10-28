@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class WaitlistRepository(ClubDbContext dbContext)
+public sealed class WaitlistRepository(ClubDbContext dbContext)
 {
     public async Task<List<WaitlistEntry>> GetWaitingAsync(long classId, CancellationToken ct)
     {

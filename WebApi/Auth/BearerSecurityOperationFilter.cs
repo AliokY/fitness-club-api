@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WebApi.Auth;
 
-public class BearerSecurityOperationFilter : IOperationFilter
+public sealed class BearerSecurityOperationFilter : IOperationFilter
 {
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {

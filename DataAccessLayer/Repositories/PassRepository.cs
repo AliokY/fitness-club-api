@@ -4,17 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class PassRepository : GenericRepository<Pass>, IPassRepository
+public sealed class PassRepository(DbSet<Pass> dbSet) : GenericRepository<Pass>(dbSet), IPassRepository
 {
     public Task<Pass> GetForUpdateAsync(long userId, CancellationToken ct = default)
     {
         return _dbSet.FromSqlInterpolated($"SELECT * FROM passes WHERE user_id = {userId} FOR UPDATE")
             .SingleAsync(ct);
-    }
-
-    public PassRepository(DbSet<Pass> dbSet)
-        : base(dbSet)
-    {
     }
 
     public async Task<Pass?> GetByUserAsync(long userId, CancellationToken ct = default)

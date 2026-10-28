@@ -6,14 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace WebApi.Auth;
 
-public class AccessTokenService
+public sealed class AccessTokenService(JwtOptions options)
 {
-    private readonly JwtOptions _options;
-
-    public AccessTokenService(JwtOptions options)
-    {
-        _options = options;
-    }
+    private readonly JwtOptions _options = options;
 
     public LoginResponse Create(User user)
     {

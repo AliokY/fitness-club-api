@@ -2,6 +2,7 @@ using System.Text;
 using Common.Caching;
 using DataAccessLayer;
 using DataAccessLayer.Entities;
+using DataAccessLayer.Repositories;
 using DataAccessLayer.Seeding;
 using DataAccessLayer.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,13 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
+using WebApi.Analytics;
 using WebApi.Auth;
-using WebApi.Middleware;
 using WebApi.Enrollments;
+using WebApi.Middleware;
 using WebApi.RateLimiting;
 using WebApi.Schedule;
-using WebApi.Analytics;
-using DataAccessLayer.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

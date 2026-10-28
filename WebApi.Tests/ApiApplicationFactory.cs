@@ -1,7 +1,7 @@
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
-using System.Security.Cryptography;
 
 namespace WebApi.Tests;
 

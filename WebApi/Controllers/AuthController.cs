@@ -9,21 +9,14 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("auth")]
-public class AuthController : ControllerBase
+public sealed class AuthController(
+    IUnitOfWork unitOfWork,
+    AccessTokenService accessTokenService,
+    IPasswordHasher<User> passwordHasher) : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly AccessTokenService _accessTokenService;
-    private readonly IPasswordHasher<User> _passwordHasher;
-
-    public AuthController(
-        IUnitOfWork unitOfWork,
-        AccessTokenService accessTokenService,
-        IPasswordHasher<User> passwordHasher)
-    {
-        _unitOfWork = unitOfWork;
-        _accessTokenService = accessTokenService;
-        _passwordHasher = passwordHasher;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly AccessTokenService _accessTokenService = accessTokenService;
+    private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken ct)

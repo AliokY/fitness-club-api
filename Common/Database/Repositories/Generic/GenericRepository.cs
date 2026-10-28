@@ -3,15 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Common.Database.Repositories.Generic;
 
-public class GenericRepository<TEntity> : IGenericRepository<TEntity>
+public class GenericRepository<TEntity>(DbSet<TEntity> dbSet) : IGenericRepository<TEntity>
     where TEntity : class, IEntity
 {
-    protected readonly DbSet<TEntity> _dbSet;
-
-    public GenericRepository(DbSet<TEntity> dbSet)
-    {
-        _dbSet = dbSet ?? throw new ArgumentNullException(nameof(dbSet));
-    }
+    protected readonly DbSet<TEntity> _dbSet = dbSet ?? throw new ArgumentNullException(nameof(dbSet));
 
     public IQueryable<TEntity> Query()
     {

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Enrollments;
 
-public class EnrollmentService(IUnitOfWork unitOfWork, IdempotencyRepository idempotency, TimeProvider clock)
+public sealed class EnrollmentService(IUnitOfWork unitOfWork, IdempotencyRepository idempotency, TimeProvider clock)
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private readonly WaitlistRepository _waitlist = new((ClubDbContext)unitOfWork.DbContext);

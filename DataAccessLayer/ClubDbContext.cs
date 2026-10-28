@@ -3,13 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer;
 
-public class ClubDbContext : DbContext
+public class ClubDbContext(DbContextOptions<ClubDbContext> options) : DbContext(options)
 {
-    public ClubDbContext(DbContextOptions<ClubDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<User> Users => Set<User>();
 
     public DbSet<Room> Rooms => Set<Room>();

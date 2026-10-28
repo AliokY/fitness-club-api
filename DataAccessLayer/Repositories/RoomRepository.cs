@@ -4,10 +4,4 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class RoomRepository : GenericRepository<Room>, IRoomRepository
-{
-    public RoomRepository(DbSet<Room> dbSet)
-        : base(dbSet)
-    {
-    }
-}
+public sealed class RoomRepository(DbSet<Room> dbSet) : GenericRepository<Room>(dbSet), IRoomRepository;

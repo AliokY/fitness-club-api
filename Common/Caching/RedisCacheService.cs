@@ -3,18 +3,12 @@ using StackExchange.Redis;
 
 namespace Common.Caching;
 
-public class RedisCacheService : ICacheService
+public sealed class RedisCacheService(IConnectionMultiplexer connection, TimeSpan defaultTtl) : ICacheService
 {
     private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web);
 
-    private readonly IConnectionMultiplexer _connection;
-    private readonly TimeSpan _defaultTtl;
-
-    public RedisCacheService(IConnectionMultiplexer connection, TimeSpan defaultTtl)
-    {
-        _connection = connection;
-        _defaultTtl = defaultTtl;
-    }
+    private readonly IConnectionMultiplexer _connection = connection;
+    private readonly TimeSpan _defaultTtl = defaultTtl;
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken ct = default)
     {

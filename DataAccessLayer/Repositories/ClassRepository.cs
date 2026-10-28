@@ -4,17 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class ClassRepository : GenericRepository<Class>, IClassRepository
+public sealed class ClassRepository(DbSet<Class> dbSet) : GenericRepository<Class>(dbSet), IClassRepository
 {
     public Task<Class?> GetForUpdateAsync(long id, CancellationToken ct = default)
     {
         return _dbSet.FromSqlInterpolated($"SELECT * FROM classes WHERE id = {id} FOR UPDATE")
             .IgnoreQueryFilters().SingleOrDefaultAsync(ct);
-    }
-
-    public ClassRepository(DbSet<Class> dbSet)
-        : base(dbSet)
-    {
     }
 
     public async Task<Class?> GetWithEnrollmentsAsync(long id, CancellationToken ct = default)

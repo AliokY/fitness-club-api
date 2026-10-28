@@ -13,17 +13,11 @@ public interface IUnitOfWorkBase
     Task SaveChangesAsync(CancellationToken ct = default);
 }
 
-public abstract class UnitOfWorkBase : IUnitOfWorkBase
+public abstract class UnitOfWorkBase(DbContext dbContext) : IUnitOfWorkBase
 {
-    private readonly Dictionary<Type, object> _repositories;
+    private readonly Dictionary<Type, object> _repositories = new();
 
-    protected UnitOfWorkBase(DbContext dbContext)
-    {
-        DbContext = dbContext;
-        _repositories = new Dictionary<Type, object>();
-    }
-
-    public DbContext DbContext { get; }
+    public DbContext DbContext { get; } = dbContext;
 
     public IGenericRepository<T> GetRepository<T>() where T : class, IEntity
     {

@@ -1,9 +1,9 @@
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace WebApi.Auth;
 
-public class JwtOptions
+public sealed class JwtOptions
 {
     public string Issuer { get; set; } = null!;
 

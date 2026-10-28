@@ -15,13 +15,8 @@ public interface IUnitOfWork : IUnitOfWorkBase
     IPassRepository Pass { get; }
 }
 
-public class UnitOfWork : UnitOfWorkBase, IUnitOfWork
+public sealed class UnitOfWork(ClubDbContext dbContext) : UnitOfWorkBase(dbContext), IUnitOfWork
 {
-    public UnitOfWork(ClubDbContext dbContext)
-        : base(dbContext)
-    {
-    }
-
     public IRoomRepository Room => GetRepository<Room, IRoomRepository>(set => new RoomRepository(set));
 
     public IClassRepository Class => GetRepository<Class, IClassRepository>(set => new ClassRepository(set));

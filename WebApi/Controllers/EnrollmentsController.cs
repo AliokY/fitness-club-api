@@ -10,7 +10,7 @@ namespace WebApi.Controllers;
 [Authorize]
 [Route("enrollments")]
 [EnrollmentRateLimit]
-public class EnrollmentsController(EnrollmentService service) : BaseApiController
+public sealed class EnrollmentsController(EnrollmentService service) : BaseApiController
 {
     [HttpPost("waitlist")]
     [ProducesResponseType<JoinWaitlistResponse>(StatusCodes.Status201Created)]

@@ -2,7 +2,7 @@ using StackExchange.Redis;
 
 namespace WebApi.RateLimiting;
 
-public class EnrollmentRateLimiter(IConnectionMultiplexer redis)
+public sealed class EnrollmentRateLimiter(IConnectionMultiplexer redis)
 {
     // Use a sliding window, do not count rejected 429 responses, and get time from the shared Redis server
     private const string Script = """

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccessLayer.Configurations;
 
-public class WaitlistEntryConfiguration : IEntityTypeConfiguration<WaitlistEntry>
+public sealed class WaitlistEntryConfiguration : IEntityTypeConfiguration<WaitlistEntry>
 {
     public void Configure(EntityTypeBuilder<WaitlistEntry> builder)
     {

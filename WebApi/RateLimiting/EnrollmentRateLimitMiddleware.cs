@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.RateLimiting;
 
-public class EnrollmentRateLimitMiddleware(RequestDelegate next)
+public sealed class EnrollmentRateLimitMiddleware(RequestDelegate next)
 {
     public async Task InvokeAsync(HttpContext context, EnrollmentRateLimiter limiter, IProblemDetailsService problems)
     {

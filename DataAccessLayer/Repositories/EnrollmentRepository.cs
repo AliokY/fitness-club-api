@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class EnrollmentRepository : GenericRepository<Enrollment>, IEnrollmentRepository
+public sealed class EnrollmentRepository(DbSet<Enrollment> dbSet)
+    : GenericRepository<Enrollment>(dbSet), IEnrollmentRepository
 {
     public Task<long?> GetClassIdForUserAsync(long id, long userId, CancellationToken ct = default)
     {
@@ -22,11 +23,6 @@ public class EnrollmentRepository : GenericRepository<Enrollment>, IEnrollmentRe
     {
         return await _dbSet.Where(x => x.ClassId == classId && x.Status == "active")
             .SumAsync(x => (long)x.Seats, ct);
-    }
-
-    public EnrollmentRepository(DbSet<Enrollment> dbSet)
-        : base(dbSet)
-    {
     }
 
     public async Task<List<Enrollment>> GetByUserAsync(long userId, CancellationToken ct = default)

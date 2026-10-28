@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
-public class IdempotencyRepository(ClubDbContext dbContext)
+public sealed class IdempotencyRepository(ClubDbContext dbContext)
 {
     public async Task<IdempotencyRecord> AcquireAsync(
         long userId, string operation, string hash, string key, long classId, int seats, CancellationToken ct)

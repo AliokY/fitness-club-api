@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccessLayer.Configurations;
 
-public class PassConfiguration : IEntityTypeConfiguration<Pass>
+public sealed class PassConfiguration : IEntityTypeConfiguration<Pass>
 {
     public void Configure(EntityTypeBuilder<Pass> builder)
     {
